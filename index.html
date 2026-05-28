@@ -1,3 +1,1259 @@
-<html>
-Welcome !
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sunil Ramaiah</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #0a0a0f;
+      --bg2: #111118;
+      --surface: #16161f;
+      --border: #22222e;
+      --accent: #6c63ff;
+      --accent2: #00d4aa;
+      --text: #e8e8f0;
+      --muted: #8888aa;
+      --card: #1a1a26;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 2rem;
+      background: rgba(10,10,15,0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      transition: all .3s;
+    }
+
+    .nav-logo {
+      font-weight: 700;
+      font-size: 1.1rem;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: .875rem;
+      font-weight: 500;
+      letter-spacing: .02em;
+      transition: color .2s;
+    }
+
+    .nav-links a:hover { color: var(--text); }
+
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      background: none;
+      border: none;
+      padding: .25rem;
+    }
+
+    .hamburger span {
+      display: block;
+      width: 24px; height: 2px;
+      background: var(--text);
+      border-radius: 2px;
+      transition: all .3s;
+    }
+
+    /* ── HERO ── */
+    #hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      padding: 6rem 2rem 4rem;
+      overflow: hidden;
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 80% 60% at 60% 40%, rgba(108,99,255,.12) 0%, transparent 60%),
+        radial-gradient(ellipse 60% 40% at 20% 80%, rgba(0,212,170,.08) 0%, transparent 50%);
+    }
+
+    .hero-grid {
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,.02) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.02) 1px, transparent 1px);
+      background-size: 60px 60px;
+    }
+
+    .hero-content {
+      position: relative;
+      max-width: 800px;
+      text-align: center;
+    }
+
+    .hero-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: .5rem;
+      background: rgba(108,99,255,.12);
+      border: 1px solid rgba(108,99,255,.3);
+      color: var(--accent);
+      font-size: .8rem;
+      font-weight: 600;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      padding: .4rem 1rem;
+      border-radius: 999px;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-tag::before {
+      content: '';
+      width: 6px; height: 6px;
+      background: var(--accent2);
+      border-radius: 50%;
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: .5; transform: scale(1.3); }
+    }
+
+    h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.8rem, 7vw, 5rem);
+      line-height: 1.1;
+      margin-bottom: 1rem;
+      background: linear-gradient(135deg, #fff 0%, rgba(255,255,255,.7) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero-sub {
+      font-size: clamp(1rem, 2.5vw, 1.25rem);
+      color: var(--muted);
+      max-width: 600px;
+      margin: 0 auto 2.5rem;
+      font-weight: 400;
+    }
+
+    .hero-sub strong {
+      color: var(--accent2);
+      font-weight: 600;
+    }
+
+    .hero-cta {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: .5rem;
+      padding: .75rem 1.75rem;
+      border-radius: 8px;
+      font-size: .9rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all .2s;
+      cursor: pointer;
+      border: none;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--accent), #8b83ff);
+      color: #fff;
+      box-shadow: 0 0 20px rgba(108,99,255,.3);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 30px rgba(108,99,255,.5);
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--text);
+      border: 1px solid var(--border);
+    }
+
+    .btn-outline:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+      transform: translateY(-2px);
+    }
+
+    .scroll-indicator {
+      position: absolute;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: .5rem;
+      color: var(--muted);
+      font-size: .75rem;
+    }
+
+    .scroll-line {
+      width: 1px;
+      height: 40px;
+      background: linear-gradient(to bottom, var(--accent), transparent);
+      animation: scrollAnim 2s ease-in-out infinite;
+    }
+
+    @keyframes scrollAnim {
+      0%, 100% { opacity: .3; transform: scaleY(1); }
+      50% { opacity: 1; transform: scaleY(1.2); }
+    }
+
+    /* ── SECTIONS ── */
+    section {
+      padding: 6rem 2rem;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .section-label {
+      font-size: .75rem;
+      font-weight: 700;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: .75rem;
+    }
+
+    h2 {
+      font-size: clamp(1.8rem, 4vw, 2.5rem);
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: .75rem;
+    }
+
+    .section-divider {
+      width: 48px;
+      height: 3px;
+      background: linear-gradient(90deg, var(--accent), var(--accent2));
+      border-radius: 2px;
+      margin-bottom: 3rem;
+    }
+
+    /* ── ABOUT ── */
+    #about { background: var(--bg2); }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+    }
+
+    .about-text p {
+      color: var(--muted);
+      line-height: 1.8;
+      margin-bottom: 1rem;
+    }
+
+    .about-text p:last-child { margin-bottom: 0; }
+
+    .about-text strong { color: var(--text); }
+
+    .about-stats {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+    }
+
+    .stat-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.5rem;
+      text-align: center;
+      transition: border-color .2s, transform .2s;
+    }
+
+    .stat-card:hover {
+      border-color: var(--accent);
+      transform: translateY(-4px);
+    }
+
+    .stat-num {
+      font-size: 2rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .stat-label {
+      font-size: .8rem;
+      color: var(--muted);
+      margin-top: .25rem;
+    }
+
+    /* ── EXPERIENCE ── */
+    #experience { background: var(--bg); }
+
+    .timeline {
+      position: relative;
+      padding-left: 2rem;
+    }
+
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 0; top: 0; bottom: 0;
+      width: 1px;
+      background: linear-gradient(to bottom, var(--accent), transparent);
+    }
+
+    .timeline-item {
+      position: relative;
+      margin-bottom: 3rem;
+    }
+
+    .timeline-item:last-child { margin-bottom: 0; }
+
+    .timeline-dot {
+      position: absolute;
+      left: -2.35rem;
+      top: .3rem;
+      width: 12px; height: 12px;
+      border-radius: 50%;
+      background: var(--accent);
+      box-shadow: 0 0 0 3px rgba(108,99,255,.2);
+    }
+
+    .timeline-item.current .timeline-dot {
+      background: var(--accent2);
+      box-shadow: 0 0 0 3px rgba(0,212,170,.2);
+      animation: pulse 2s infinite;
+    }
+
+    .timeline-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.75rem;
+      transition: border-color .2s, transform .2s;
+    }
+
+    .timeline-card:hover {
+      border-color: var(--border);
+      transform: translateX(4px);
+    }
+
+    .timeline-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 1rem;
+      flex-wrap: wrap;
+      margin-bottom: .75rem;
+    }
+
+    .timeline-title {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--text);
+    }
+
+    .timeline-company {
+      font-size: .9rem;
+      color: var(--accent);
+      font-weight: 600;
+      margin-bottom: .25rem;
+    }
+
+    .timeline-date {
+      font-size: .8rem;
+      color: var(--muted);
+      white-space: nowrap;
+      background: rgba(255,255,255,.04);
+      padding: .25rem .75rem;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+    }
+
+    .timeline-desc {
+      color: var(--muted);
+      font-size: .9rem;
+      line-height: 1.7;
+    }
+
+    .badge-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .5rem;
+      margin-top: 1rem;
+    }
+
+    .badge {
+      font-size: .75rem;
+      font-weight: 600;
+      padding: .25rem .75rem;
+      border-radius: 999px;
+      background: rgba(108,99,255,.1);
+      border: 1px solid rgba(108,99,255,.2);
+      color: var(--accent);
+    }
+
+    .badge.green {
+      background: rgba(0,212,170,.1);
+      border-color: rgba(0,212,170,.2);
+      color: var(--accent2);
+    }
+
+    /* ── SKILLS ── */
+    #skills { background: var(--bg2); }
+
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .skill-group {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.75rem;
+      transition: border-color .2s, transform .2s;
+    }
+
+    .skill-group:hover {
+      border-color: var(--accent);
+      transform: translateY(-4px);
+    }
+
+    .skill-group-icon {
+      font-size: 1.75rem;
+      margin-bottom: 1rem;
+    }
+
+    .skill-group-title {
+      font-size: 1rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      color: var(--text);
+    }
+
+    .skill-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .5rem;
+    }
+
+    .skill-tag {
+      font-size: .8rem;
+      padding: .3rem .8rem;
+      border-radius: 6px;
+      background: rgba(255,255,255,.04);
+      border: 1px solid var(--border);
+      color: var(--muted);
+      transition: all .2s;
+    }
+
+    .skill-tag:hover {
+      background: rgba(108,99,255,.1);
+      border-color: rgba(108,99,255,.3);
+      color: var(--text);
+    }
+
+    /* ── GOLF ── */
+    #golf { background: var(--bg); }
+
+    .golf-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      align-items: start;
+    }
+
+    .golf-intro {
+      color: var(--muted);
+      line-height: 1.8;
+      margin-bottom: 1.5rem;
+    }
+
+    .golf-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.75rem;
+      height: 100%;
+    }
+
+    .golf-card-title {
+      font-size: 1rem;
+      font-weight: 700;
+      margin-bottom: 1.25rem;
+      display: flex;
+      align-items: center;
+      gap: .5rem;
+    }
+
+    .golf-highlight {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: .875rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .golf-highlight:last-child { border-bottom: none; }
+
+    .golf-highlight-icon {
+      font-size: 1.25rem;
+      width: 2.5rem;
+      text-align: center;
+    }
+
+    .golf-highlight-text strong {
+      display: block;
+      font-size: .9rem;
+      color: var(--text);
+    }
+
+    .golf-highlight-text span {
+      font-size: .8rem;
+      color: var(--muted);
+    }
+
+    .tournament-link {
+      display: inline-flex;
+      align-items: center;
+      gap: .5rem;
+      color: var(--accent);
+      text-decoration: none;
+      font-size: .875rem;
+      font-weight: 600;
+      margin-top: 1.25rem;
+      transition: gap .2s;
+    }
+
+    .tournament-link:hover { gap: .75rem; }
+
+    /* ── CONTACT ── */
+    #contact { background: var(--bg2); }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      align-items: start;
+    }
+
+    .contact-intro {
+      color: var(--muted);
+      line-height: 1.8;
+      margin-bottom: 2rem;
+    }
+
+    .contact-links {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .contact-link {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 1rem 1.25rem;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      text-decoration: none;
+      transition: all .2s;
+    }
+
+    .contact-link:hover {
+      border-color: var(--accent);
+      transform: translateX(4px);
+    }
+
+    .contact-link-icon {
+      width: 2.5rem; height: 2.5rem;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+      flex-shrink: 0;
+    }
+
+    .contact-link-icon.li { background: rgba(10,102,194,.15); }
+    .contact-link-icon.email { background: rgba(108,99,255,.15); }
+    .contact-link-icon.golf { background: rgba(0,212,170,.15); }
+
+    .contact-link-text strong {
+      display: block;
+      font-size: .9rem;
+      color: var(--text);
+    }
+
+    .contact-link-text span {
+      font-size: .8rem;
+      color: var(--muted);
+    }
+
+    .contact-form {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: .375rem;
+    }
+
+    .form-group label {
+      font-size: .8rem;
+      font-weight: 600;
+      color: var(--muted);
+      letter-spacing: .03em;
+    }
+
+    .form-group input,
+    .form-group textarea {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: .75rem 1rem;
+      color: var(--text);
+      font-family: inherit;
+      font-size: .9rem;
+      transition: border-color .2s;
+      outline: none;
+      resize: vertical;
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus {
+      border-color: var(--accent);
+    }
+
+    .form-group textarea { min-height: 120px; }
+
+    .form-status {
+      font-size: .85rem;
+      padding: .75rem 1rem;
+      border-radius: 8px;
+      display: none;
+    }
+
+    .form-status.success {
+      display: block;
+      background: rgba(0,212,170,.1);
+      border: 1px solid rgba(0,212,170,.3);
+      color: var(--accent2);
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      padding: 2rem;
+      text-align: center;
+      border-top: 1px solid var(--border);
+      color: var(--muted);
+      font-size: .8rem;
+    }
+
+    footer a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    /* ── FADE IN ── */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity .6s ease, transform .6s ease;
+    }
+
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ── MOBILE ── */
+    @media (max-width: 768px) {
+      .hamburger { display: flex; }
+
+      .nav-links {
+        position: fixed;
+        top: 0; right: 0;
+        height: 100vh;
+        width: 70vw;
+        max-width: 280px;
+        background: var(--surface);
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 2.5rem;
+        transform: translateX(100%);
+        transition: transform .3s ease;
+        border-left: 1px solid var(--border);
+      }
+
+      .nav-links.open { transform: translateX(0); }
+
+      .nav-links a { font-size: 1rem; }
+
+      .about-grid,
+      .golf-layout,
+      .contact-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+
+      .about-stats { grid-template-columns: 1fr 1fr; }
+
+      section { padding: 4rem 1.25rem; }
+
+      .timeline { padding-left: 1.5rem; }
+
+      .timeline-dot { left: -1.85rem; }
+
+      .timeline-header { flex-direction: column; }
+    }
+
+    @media (max-width: 480px) {
+      nav { padding: 1rem 1.25rem; }
+      .about-stats { grid-template-columns: 1fr 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="navbar">
+  <div class="nav-logo">SR</div>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#about" onclick="closeMenu()">About</a></li>
+    <li><a href="#experience" onclick="closeMenu()">Experience</a></li>
+    <li><a href="#skills" onclick="closeMenu()">Skills</a></li>
+    <li><a href="#golf" onclick="closeMenu()">Golf</a></li>
+    <li><a href="#contact" onclick="closeMenu()">Contact</a></li>
+  </ul>
+  <button class="hamburger" id="hamburger" aria-label="Menu" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-content">
+    <div class="hero-tag">Engineering Leader · Mentor · Golfer</div>
+    <h1>Sunil Ramaiah</h1>
+    <p class="hero-sub">
+      20+ years building <strong>world-class technology</strong> at scale —
+      currently leading engineering at <strong>PayPal</strong>.
+    </p>
+    <div class="hero-cta">
+      <a href="#about" class="btn btn-primary">About Me</a>
+      <a href="https://www.linkedin.com/in/sunilramaiah/" target="_blank" rel="noopener" class="btn btn-outline">
+        LinkedIn ↗
+      </a>
+    </div>
+  </div>
+  <div class="scroll-indicator">
+    <div class="scroll-line"></div>
+    <span>Scroll</span>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="container">
+    <div class="section-label">Who I Am</div>
+    <h2>About Me</h2>
+    <div class="section-divider"></div>
+    <div class="about-grid fade-in">
+      <div class="about-text">
+        <p>
+          I'm a <strong>technology executive and engineering leader</strong> based in
+          Morgan Hill, California, with over two decades of experience building and
+          scaling products that millions of people use every day.
+        </p>
+        <p>
+          At <strong>PayPal</strong>, I lead high-performing engineering teams across
+          backend, mobile, and full-stack disciplines — driving innovation in payments,
+          promotions, and platform infrastructure. I'm passionate about cultivating
+          talent, shipping impactful products, and building cultures where great
+          engineers can do their best work.
+        </p>
+        <p>
+          Outside of tech, I'm an avid <strong>golfer and teacher</strong>. I believe
+          golf — like engineering — rewards patience, precision, and a commitment to
+          continuous improvement. I compete in amateur tournaments and love helping
+          others find their love for the game.
+        </p>
+      </div>
+      <div class="about-stats">
+        <div class="stat-card">
+          <div class="stat-num">20+</div>
+          <div class="stat-label">Years of Experience</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num">500+</div>
+          <div class="stat-label">LinkedIn Connections</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num">4K+</div>
+          <div class="stat-label">LinkedIn Followers</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num">⛳</div>
+          <div class="stat-label">Passionate Golfer</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="container">
+    <div class="section-label">Career</div>
+    <h2>Experience</h2>
+    <div class="section-divider"></div>
+    <div class="timeline">
+
+      <div class="timeline-item current fade-in">
+        <div class="timeline-dot"></div>
+        <div class="timeline-card">
+          <div class="timeline-header">
+            <div>
+              <div class="timeline-company">PayPal — San Jose, CA</div>
+              <div class="timeline-title">Engineering Leader</div>
+            </div>
+            <div class="timeline-date">Present</div>
+          </div>
+          <p class="timeline-desc">
+            Leading multiple engineering teams building scalable payments, promotions, and
+            platform products serving hundreds of millions of customers globally. Hiring and
+            growing top-tier talent across backend (Java/Spring), mobile (Android/iOS), and
+            full-stack (Node.js) disciplines. Driving technical strategy, architectural
+            decisions, and cross-functional alignment.
+          </p>
+          <div class="badge-list">
+            <span class="badge">Java / Spring</span>
+            <span class="badge">Node.js</span>
+            <span class="badge">Android</span>
+            <span class="badge">Payments</span>
+            <span class="badge green">Hiring</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="timeline-item fade-in">
+        <div class="timeline-dot"></div>
+        <div class="timeline-card">
+          <div class="timeline-header">
+            <div>
+              <div class="timeline-company">Tasteful — San Francisco Bay Area</div>
+              <div class="timeline-title">Co-Founder / Engineering Lead</div>
+            </div>
+            <div class="timeline-date">Dec 2015</div>
+          </div>
+          <p class="timeline-desc">
+            Co-built a platform surfacing 252,357 healthy restaurant options across 8,000 cities,
+            complete with meal tracking capabilities. Combined product vision with hands-on engineering
+            to build a consumer app at scale.
+          </p>
+          <div class="badge-list">
+            <span class="badge">Mobile</span>
+            <span class="badge">Product</span>
+            <span class="badge">Consumer Apps</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="timeline-item fade-in">
+        <div class="timeline-dot"></div>
+        <div class="timeline-card">
+          <div class="timeline-header">
+            <div>
+              <div class="timeline-company">Apple — Cupertino, CA</div>
+              <div class="timeline-title">Senior Software Engineer — iAd</div>
+            </div>
+            <div class="timeline-date">Jun 2013</div>
+          </div>
+          <p class="timeline-desc">
+            Engineered core features for iAd Workbench, Apple's digital advertising platform,
+            enabling advertisers to design and deploy rich interactive ad campaigns across iOS.
+          </p>
+          <div class="badge-list">
+            <span class="badge">iOS</span>
+            <span class="badge">Advertising</span>
+            <span class="badge">Mobile SDK</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="timeline-item fade-in">
+        <div class="timeline-dot"></div>
+        <div class="timeline-card">
+          <div class="timeline-header">
+            <div>
+              <div class="timeline-company">Intuit — Mountain View, CA</div>
+              <div class="timeline-title">Senior Software Engineer</div>
+            </div>
+            <div class="timeline-date">2012 – 2013</div>
+          </div>
+          <p class="timeline-desc">
+            Built Intuit PaperTrail, an iOS app for receipt and mileage tracking for small
+            business owners. Won the <strong>Intuit Tech Challenge</strong> (Mar 2012) — a
+            company-wide engineering competition recognizing top innovation.
+          </p>
+          <div class="badge-list">
+            <span class="badge">iOS</span>
+            <span class="badge">FinTech</span>
+            <span class="badge green">🏆 Tech Challenge Winner</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="timeline-item fade-in">
+        <div class="timeline-dot"></div>
+        <div class="timeline-card">
+          <div class="timeline-header">
+            <div>
+              <div class="timeline-company">Qualcomm / MediaFLO — San Diego, CA</div>
+              <div class="timeline-title">Software Engineer</div>
+            </div>
+            <div class="timeline-date">Apr 2004 – Aug 2006</div>
+          </div>
+          <p class="timeline-desc">
+            Early career engineering role on MediaFLO, Qualcomm's mobile broadcast technology
+            platform. Built software for next-generation wireless multimedia delivery systems.
+          </p>
+          <div class="badge-list">
+            <span class="badge">Embedded Systems</span>
+            <span class="badge">Mobile</span>
+            <span class="badge">Wireless</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="container">
+    <div class="section-label">What I Know</div>
+    <h2>Skills</h2>
+    <div class="section-divider"></div>
+    <div class="skills-grid">
+
+      <div class="skill-group fade-in">
+        <div class="skill-group-icon">🏗️</div>
+        <div class="skill-group-title">Engineering Leadership</div>
+        <div class="skill-tags">
+          <span class="skill-tag">Team Building</span>
+          <span class="skill-tag">Technical Strategy</span>
+          <span class="skill-tag">Hiring & Mentoring</span>
+          <span class="skill-tag">Roadmapping</span>
+          <span class="skill-tag">Cross-functional Alignment</span>
+          <span class="skill-tag">OKRs</span>
+        </div>
+      </div>
+
+      <div class="skill-group fade-in">
+        <div class="skill-group-icon">⚙️</div>
+        <div class="skill-group-title">Backend Engineering</div>
+        <div class="skill-tags">
+          <span class="skill-tag">Java</span>
+          <span class="skill-tag">Spring Boot</span>
+          <span class="skill-tag">Node.js</span>
+          <span class="skill-tag">Microservices</span>
+          <span class="skill-tag">REST APIs</span>
+          <span class="skill-tag">Distributed Systems</span>
+        </div>
+      </div>
+
+      <div class="skill-group fade-in">
+        <div class="skill-group-icon">📱</div>
+        <div class="skill-group-title">Mobile & Frontend</div>
+        <div class="skill-tags">
+          <span class="skill-tag">Android</span>
+          <span class="skill-tag">iOS</span>
+          <span class="skill-tag">React</span>
+          <span class="skill-tag">Full-Stack</span>
+          <span class="skill-tag">Mobile SDK</span>
+        </div>
+      </div>
+
+      <div class="skill-group fade-in">
+        <div class="skill-group-icon">☁️</div>
+        <div class="skill-group-title">Platform & Infrastructure</div>
+        <div class="skill-tags">
+          <span class="skill-tag">Cloud Architecture</span>
+          <span class="skill-tag">Payments</span>
+          <span class="skill-tag">Promotions Platform</span>
+          <span class="skill-tag">Scalability</span>
+          <span class="skill-tag">DevOps</span>
+          <span class="skill-tag">CI/CD</span>
+        </div>
+      </div>
+
+      <div class="skill-group fade-in">
+        <div class="skill-group-icon">🧠</div>
+        <div class="skill-group-title">Product & Strategy</div>
+        <div class="skill-tags">
+          <span class="skill-tag">Product Sense</span>
+          <span class="skill-tag">Stakeholder Management</span>
+          <span class="skill-tag">Go-to-Market</span>
+          <span class="skill-tag">Data-Driven Decisions</span>
+          <span class="skill-tag">Startup Experience</span>
+        </div>
+      </div>
+
+      <div class="skill-group fade-in">
+        <div class="skill-group-icon">🎓</div>
+        <div class="skill-group-title">Teaching & Coaching</div>
+        <div class="skill-tags">
+          <span class="skill-tag">Mentorship</span>
+          <span class="skill-tag">Engineering Coaching</span>
+          <span class="skill-tag">Golf Instruction</span>
+          <span class="skill-tag">Public Speaking</span>
+          <span class="skill-tag">Knowledge Sharing</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- GOLF -->
+<section id="golf">
+  <div class="container">
+    <div class="section-label">On the Course</div>
+    <h2>Golf</h2>
+    <div class="section-divider"></div>
+    <div class="golf-layout fade-in">
+      <div>
+        <p class="golf-intro">
+          Golf is more than a hobby for me — it's a pursuit of mastery that mirrors everything
+          I love about engineering. Both reward patience, deliberate practice, and the humility
+          to keep learning.
+        </p>
+        <p class="golf-intro">
+          I compete in USAM Tour amateur tournaments across the country and love sharing the
+          game with others. Teaching golf gives me the same joy as mentoring engineers —
+          watching someone click with a concept and improve is deeply rewarding.
+        </p>
+        <a
+          href="https://usamtour.bluegolf.com/bluegolf/usamtour22/profile/sramaiah1/tresults.htm"
+          target="_blank"
+          rel="noopener"
+          class="tournament-link"
+        >
+          View Tournament Results →
+        </a>
+      </div>
+      <div class="golf-card">
+        <div class="golf-card-title">⛳ What Golf Means to Me</div>
+
+        <div class="golf-highlight">
+          <div class="golf-highlight-icon">🏆</div>
+          <div class="golf-highlight-text">
+            <strong>Competitive Amateur</strong>
+            <span>Active on the USAM Tour circuit</span>
+          </div>
+        </div>
+
+        <div class="golf-highlight">
+          <div class="golf-highlight-icon">🎯</div>
+          <div class="golf-highlight-text">
+            <strong>Precision Under Pressure</strong>
+            <span>Every round is a lesson in focus and decision-making</span>
+          </div>
+        </div>
+
+        <div class="golf-highlight">
+          <div class="golf-highlight-icon">📚</div>
+          <div class="golf-highlight-text">
+            <strong>Teaching the Game</strong>
+            <span>Sharing fundamentals and love for golf with others</span>
+          </div>
+        </div>
+
+        <div class="golf-highlight">
+          <div class="golf-highlight-icon">🌿</div>
+          <div class="golf-highlight-text">
+            <strong>Continuous Improvement</strong>
+            <span>Always working on the next aspect of the game</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="container">
+    <div class="section-label">Get in Touch</div>
+    <h2>Contact</h2>
+    <div class="section-divider"></div>
+    <div class="contact-grid fade-in">
+      <div>
+        <p class="contact-intro">
+          Whether you're interested in engineering roles at PayPal, want to talk shop about
+          technology leadership, or are looking for a golf partner — I'd love to hear from you.
+        </p>
+
+        <div class="contact-links">
+          <a href="https://www.linkedin.com/in/sunilramaiah/" target="_blank" rel="noopener" class="contact-link">
+            <div class="contact-link-icon li">💼</div>
+            <div class="contact-link-text">
+              <strong>LinkedIn</strong>
+              <span>linkedin.com/in/sunilramaiah</span>
+            </div>
+          </a>
+
+          <a href="mailto:sunilramaiah@gmail.com" class="contact-link">
+            <div class="contact-link-icon email">✉️</div>
+            <div class="contact-link-text">
+              <strong>Email</strong>
+              <span>sunil@sunilramaiah.com</span>
+            </div>
+          </a>
+
+          <a
+            href="https://usamtour.bluegolf.com/bluegolf/usamtour22/profile/sramaiah1/tresults.htm"
+            target="_blank"
+            rel="noopener"
+            class="contact-link"
+          >
+            <div class="contact-link-icon golf">⛳</div>
+            <div class="contact-link-text">
+              <strong>Golf Profile</strong>
+              <span>USAM Tour — Tournament Results</span>
+            </div>
+          </a>
+        </div>
+      </div>
+
+      <form class="contact-form" id="contactForm" onsubmit="handleSubmit(event)">
+        <div class="form-group">
+          <label for="name">Name</label>
+          <input type="text" id="name" name="name" placeholder="Your name" required />
+        </div>
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" placeholder="your@email.com" required />
+        </div>
+        <div class="form-group">
+          <label for="message">Message</label>
+          <textarea id="message" name="message" placeholder="Say hello..." required></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Send Message</button>
+        <div class="form-status success" id="formStatus">
+          Thanks for reaching out! I'll get back to you soon.
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>© 2025 Sunil Ramaiah · Morgan Hill, California · Built with ❤️ and clean code</p>
+</footer>
+
+<script>
+  // Nav toggle
+  function toggleMenu() {
+    document.getElementById('navLinks').classList.toggle('open');
+  }
+  function closeMenu() {
+    document.getElementById('navLinks').classList.remove('open');
+  }
+
+  // Fade-in on scroll
+  const observer = new IntersectionObserver(
+    entries => entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        observer.unobserve(e.target);
+      }
+    }),
+    { threshold: 0.1, rootMargin: '0px 0px -40px 0px' }
+  );
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+  // Nav scroll effect
+  window.addEventListener('scroll', () => {
+    document.getElementById('navbar').style.background =
+      window.scrollY > 40 ? 'rgba(10,10,15,0.97)' : 'rgba(10,10,15,0.85)';
+  });
+
+  // Contact form (mailto fallback — no backend needed)
+  function handleSubmit(e) {
+    e.preventDefault();
+    const name = document.getElementById('name').value;
+    const email = document.getElementById('email').value;
+    const message = document.getElementById('message').value;
+    const subject = encodeURIComponent(`Message from ${name}`);
+    const body = encodeURIComponent(`From: ${name}\nEmail: ${email}\n\n${message}`);
+    window.location.href = `mailto:sunil@sunilramaiah.com?subject=${subject}&body=${body}`;
+    document.getElementById('formStatus').style.display = 'block';
+    e.target.reset();
+  }
+</script>
+</body>
 </html>
