@@ -286,9 +286,24 @@
 
     .about-grid {
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 4rem;
+      grid-template-columns: auto 1fr 1fr;
+      gap: 3rem;
       align-items: center;
+    }
+
+    .about-photo-wrap {
+      flex-shrink: 0;
+    }
+
+    .about-photo {
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      object-fit: cover;
+      object-position: center top;
+      border: 3px solid var(--border);
+      box-shadow: 0 0 0 6px rgba(108,99,255,.15), 0 8px 32px rgba(0,0,0,.4);
+      display: block;
     }
 
     .about-text p {
@@ -505,8 +520,121 @@
       color: var(--text);
     }
 
+    /* ── RECOMMENDATIONS ── */
+    #recommendations { background: var(--bg); }
+
+    .rec-themes {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+      margin-bottom: 3rem;
+    }
+
+    .rec-theme {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1.25rem;
+      text-align: center;
+      transition: border-color .2s, transform .2s;
+    }
+
+    .rec-theme:hover {
+      border-color: var(--accent);
+      transform: translateY(-3px);
+    }
+
+    .rec-theme-icon { font-size: 1.5rem; margin-bottom: .5rem; }
+
+    .rec-theme-label {
+      font-size: .85rem;
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    .rec-cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .rec-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.75rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      transition: border-color .2s, transform .2s;
+    }
+
+    .rec-card:hover {
+      border-color: var(--accent);
+      transform: translateY(-4px);
+    }
+
+    .rec-quote {
+      font-size: .9rem;
+      color: var(--muted);
+      line-height: 1.75;
+      flex: 1;
+      position: relative;
+      padding-left: 1rem;
+    }
+
+    .rec-quote::before {
+      content: '"';
+      position: absolute;
+      left: 0; top: -.25rem;
+      font-size: 2rem;
+      line-height: 1;
+      color: var(--accent);
+      font-family: 'Playfair Display', serif;
+      opacity: .6;
+    }
+
+    .rec-author {
+      display: flex;
+      align-items: center;
+      gap: .875rem;
+      border-top: 1px solid var(--border);
+      padding-top: 1rem;
+    }
+
+    .rec-avatar {
+      width: 2.5rem; height: 2.5rem;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: .9rem;
+      color: #fff;
+      flex-shrink: 0;
+    }
+
+    .rec-author-name {
+      font-size: .875rem;
+      font-weight: 700;
+      color: var(--text);
+    }
+
+    .rec-author-title {
+      font-size: .775rem;
+      color: var(--muted);
+    }
+
+    .rec-relationship {
+      font-size: .75rem;
+      color: var(--accent);
+      font-weight: 500;
+      margin-top: .125rem;
+    }
+
     /* ── GOLF ── */
-    #golf { background: var(--bg); }
+    #golf { background: var(--bg2); }
 
     .golf-layout {
       display: grid;
@@ -754,6 +882,9 @@
         gap: 2rem;
       }
 
+      .about-photo-wrap { text-align: center; }
+      .about-photo { width: 160px; height: 160px; margin: 0 auto; }
+
       .about-stats { grid-template-columns: 1fr 1fr; }
 
       section { padding: 4rem 1.25rem; }
@@ -780,6 +911,7 @@
     <li><a href="#about" onclick="closeMenu()">About</a></li>
     <li><a href="#experience" onclick="closeMenu()">Experience</a></li>
     <li><a href="#skills" onclick="closeMenu()">Skills</a></li>
+    <li><a href="#recommendations" onclick="closeMenu()">Recommendations</a></li>
     <li><a href="#golf" onclick="closeMenu()">Golf</a></li>
     <li><a href="#contact" onclick="closeMenu()">Contact</a></li>
   </ul>
@@ -819,6 +951,9 @@
     <h2>About Me</h2>
     <div class="section-divider"></div>
     <div class="about-grid fade-in">
+      <div class="about-photo-wrap">
+        <img src="photo.jpg" alt="Sunil Ramaiah" class="about-photo" />
+      </div>
       <div class="about-text">
         <p>
           I'm a <strong>technology executive and engineering leader</strong> based in
@@ -901,20 +1036,47 @@
         <div class="timeline-card">
           <div class="timeline-header">
             <div>
-              <div class="timeline-company">Tasteful — San Francisco Bay Area</div>
-              <div class="timeline-title">Co-Founder / Engineering Lead</div>
+              <div class="timeline-company">Udemy — San Francisco, CA</div>
+              <div class="timeline-title">Engineering Manager</div>
             </div>
-            <div class="timeline-date">Dec 2015</div>
+            <div class="timeline-date">2022 – 2024</div>
           </div>
           <p class="timeline-desc">
-            Co-built a platform surfacing 252,357 healthy restaurant options across 8,000 cities,
-            complete with meal tracking capabilities. Combined product vision with hands-on engineering
-            to build a consumer app at scale.
+            Led the Subscriptions, Insights &amp; Reporting, and Integrations teams spanning both
+            B2B and Consumer product lines. Successfully delivered large, high-impact initiatives
+            across the full stack while growing and mentoring a distributed engineering team.
+            Navigated seamlessly between product strategy and deep technical execution.
           </p>
           <div class="badge-list">
-            <span class="badge">Mobile</span>
-            <span class="badge">Product</span>
-            <span class="badge">Consumer Apps</span>
+            <span class="badge">EdTech</span>
+            <span class="badge">B2B &amp; Consumer</span>
+            <span class="badge">Subscriptions</span>
+            <span class="badge">Integrations</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="timeline-item fade-in">
+        <div class="timeline-dot"></div>
+        <div class="timeline-card">
+          <div class="timeline-header">
+            <div>
+              <div class="timeline-company">Instacart — San Francisco, CA</div>
+              <div class="timeline-title">Engineering Manager / Senior Software Engineer</div>
+            </div>
+            <div class="timeline-date">2020 – 2022</div>
+          </div>
+          <p class="timeline-desc">
+            Joined the Ads team as an IC engineer and quickly stepped into a management role as
+            the team scaled from ~8 to 30+ engineers across multiple squads. Prototyped a Go-based
+            ads auction server to migrate off Ruby on Rails, and drove rapid experimentation to
+            grow the sponsored results product across more customer experiences.
+          </p>
+          <div class="badge-list">
+            <span class="badge">Go</span>
+            <span class="badge">Ruby on Rails</span>
+            <span class="badge">Ads &amp; Monetization</span>
+            <span class="badge">Team Scaling</span>
           </div>
         </div>
       </div>
@@ -927,7 +1089,7 @@
               <div class="timeline-company">Apple — Cupertino, CA</div>
               <div class="timeline-title">Senior Software Engineer — iAd</div>
             </div>
-            <div class="timeline-date">Jun 2013</div>
+            <div class="timeline-date">2013 – 2015</div>
           </div>
           <p class="timeline-desc">
             Engineered core features for iAd Workbench, Apple's digital advertising platform,
@@ -949,7 +1111,7 @@
               <div class="timeline-company">Intuit — Mountain View, CA</div>
               <div class="timeline-title">Senior Software Engineer</div>
             </div>
-            <div class="timeline-date">2012 – 2013</div>
+            <div class="timeline-date">2011 – 2013</div>
           </div>
           <p class="timeline-desc">
             Built Intuit PaperTrail, an iOS app for receipt and mileage tracking for small
@@ -972,7 +1134,7 @@
               <div class="timeline-company">Qualcomm / MediaFLO — San Diego, CA</div>
               <div class="timeline-title">Software Engineer</div>
             </div>
-            <div class="timeline-date">Apr 2004 – Aug 2006</div>
+            <div class="timeline-date">2004 – 2006</div>
           </div>
           <p class="timeline-desc">
             Early career engineering role on MediaFLO, Qualcomm's mobile broadcast technology
@@ -1077,6 +1239,124 @@
   </div>
 </section>
 
+<!-- RECOMMENDATIONS -->
+<section id="recommendations">
+  <div class="container">
+    <div class="section-label">What Others Say</div>
+    <h2>Recommendations</h2>
+    <div class="section-divider"></div>
+
+    <div class="rec-themes fade-in">
+      <div class="rec-theme">
+        <div class="rec-theme-icon">🚀</div>
+        <div class="rec-theme-label">Bias for Action</div>
+      </div>
+      <div class="rec-theme">
+        <div class="rec-theme-icon">🧭</div>
+        <div class="rec-theme-label">Strong Product Sense</div>
+      </div>
+      <div class="rec-theme">
+        <div class="rec-theme-icon">🤝</div>
+        <div class="rec-theme-label">Mentor &amp; Coach</div>
+      </div>
+      <div class="rec-theme">
+        <div class="rec-theme-icon">⚙️</div>
+        <div class="rec-theme-label">Hands-On Leader</div>
+      </div>
+      <div class="rec-theme">
+        <div class="rec-theme-icon">🗣️</div>
+        <div class="rec-theme-label">Excellent Communicator</div>
+      </div>
+    </div>
+
+    <div class="rec-cards">
+
+      <div class="rec-card fade-in">
+        <p class="rec-quote">
+          Sunil has an incredible ability to keep projects moving forward without adding extra
+          burden to the team. Whether it's unblocking challenges or coordinating with
+          cross-functional teams, he handles it all smoothly. Sunil's strong product sense
+          ensures decisions are thoughtful and impactful. He also strikes a perfect balance
+          between leadership and hands-on involvement, diving into technical details when
+          necessary. As a mentor, he's approachable and always open for candid discussions,
+          whether it's about work or personal growth.
+        </p>
+        <div class="rec-author">
+          <div class="rec-avatar">MA</div>
+          <div>
+            <div class="rec-author-name">Mert Akozcan</div>
+            <div class="rec-author-title">Senior Software Engineer, Roblox</div>
+            <div class="rec-relationship">Reported to Sunil at Udemy · Jan 2025</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="rec-card fade-in">
+        <p class="rec-quote">
+          Sunil is a seasoned engineering lead with outstanding people management and technical
+          skills. He navigates different levels of abstraction with ease — from overall product
+          and business strategy down to code. During his career he worked in all sizes of
+          companies, from startups to large enterprises, which makes him highly adaptable.
+          At Udemy, he successfully led large and important areas across B2B and Consumer.
+          Sunil is an excellent communicator with both technical and non-technical audiences,
+          with a relentless focus on outcomes.
+        </p>
+        <div class="rec-author">
+          <div class="rec-avatar">MP</div>
+          <div>
+            <div class="rec-author-name">Milorad Pop-Tošić</div>
+            <div class="rec-author-title">Director of Engineering, Udemy</div>
+            <div class="rec-relationship">Managed Sunil directly · Dec 2024</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="rec-card fade-in">
+        <p class="rec-quote">
+          Sunil showed a strong bias for shipping code and building effective teams. As an IC
+          he showed strong initiative and a bias for action, regularly providing quick solutions
+          to urgent problems. He quickly prototyped a Go ads server to investigate moving from
+          Ruby on Rails for running ads auctions. As the Ads team grew from one team of ~8 ICs
+          to several teams and ~30 ICs, Sunil stepped up as a manager and learned quickly —
+          aligning his team's projects with company goals and ensuring a delivery pace that met
+          business needs for rapid experimentation.
+        </p>
+        <div class="rec-author">
+          <div class="rec-avatar">WL</div>
+          <div>
+            <div class="rec-author-name">William Lundberg</div>
+            <div class="rec-author-title">Staff Software Engineer, Instacart</div>
+            <div class="rec-relationship">Worked with Sunil on the Ads team · Dec 2024</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="rec-card fade-in">
+        <p class="rec-quote">
+          A rare combination of deep technical expertise and genuine leadership instinct.
+          Sunil brings clarity to complex problems, earns trust across levels of the
+          organization, and consistently raises the bar for the teams around him.
+        </p>
+        <div class="rec-author">
+          <div class="rec-avatar">CR</div>
+          <div>
+            <div class="rec-author-name">Chandra Rentachintala</div>
+            <div class="rec-author-title">VP of Engineering · AI &amp; Security</div>
+            <div class="rec-relationship">Worked with Sunil · Jul 2017</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div style="text-align:center; margin-top:2.5rem;">
+      <a href="https://www.linkedin.com/in/sunilramaiah/details/recommendations/" target="_blank" rel="noopener" class="tournament-link">
+        View all recommendations on LinkedIn →
+      </a>
+    </div>
+  </div>
+</section>
+
 <!-- GOLF -->
 <section id="golf">
   <div class="container">
@@ -1106,6 +1386,14 @@
       </div>
       <div class="golf-card">
         <div class="golf-card-title">⛳ What Golf Means to Me</div>
+
+        <div class="golf-highlight">
+          <div class="golf-highlight-icon">🥇</div>
+          <div class="golf-highlight-text">
+            <strong>Ruby Hill Amateur — Champion</strong>
+            <span>US AM Tour · Hogan Flight · January 8, 2024</span>
+          </div>
+        </div>
 
         <div class="golf-highlight">
           <div class="golf-highlight-icon">🏆</div>
