@@ -26,8 +26,8 @@ export default function App() {
       const navbar = document.getElementById('navbar')
       if (navbar) {
         navbar.style.background = window.scrollY > 40
-          ? 'rgba(10,10,15,0.97)'
-          : 'rgba(10,10,15,0.85)'
+          ? 'rgba(13,17,23,0.97)'
+          : 'rgba(13,17,23,0.85)'
       }
     }
     window.addEventListener('scroll', handleScroll)
